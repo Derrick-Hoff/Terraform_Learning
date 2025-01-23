@@ -1,1 +1,3 @@
 Terraform_Learning/donottouch.txt
+.Terraform
+.terraform.lock.hcl
