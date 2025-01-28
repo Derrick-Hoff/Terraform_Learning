@@ -21,6 +21,15 @@ resource "aws_instance" "app_server" {
   tags = {
     Name = "DerricksAppServer"
   }
+
+  user_data = <<-EOT
+    #!/bin/bash
+    sudo yum update -y
+    sudo yum install -y curl wget git vim htop
+    sudo yum install -y httpd
+    sudo systemctl enable httpd
+    sudo systemctl start httpd
+  EOT
 }
 
 output "instance_instance_state" {
