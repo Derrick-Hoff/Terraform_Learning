@@ -26,10 +26,6 @@ gh --version
 echo "Installing Git..."
 sudo apt-get install git -y
 
-# GitHub CLI authentication (this requires your GitHub credentials to be set up)
-echo "Authenticating with GitHub..."
-gh auth login --with-token <<< "{Token}"
-
 # Clone your GitHub repository
 echo "Cloning your GitHub repository..."
 git clone https://github.com/Derrick-Hoff/Terraform_Learning.git /home/ubuntu/DerrickRepo
@@ -42,3 +38,21 @@ cd /home/ubuntu/DerrickRepo
 # npm install
 
 echo "GitHub repository cloned successfully."
+
+sudo apt-get install python3.12
+
+sudo apt install python3-pip -y
+
+
+sudo apt install python3-venv -y
+
+
+cd Flask_Website
+
+sudo python3 -m venv venv
+source venv/bin/activate
+
+python3 -m pip install Flask
+
+
+python app.py
