@@ -13,6 +13,14 @@ provider "aws" {
   region  = "eu-west-2"
 }
 
+resource "aws_vpc" "WebSite_vpc" {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Name = "DerricksAppServer"
+  }
+}
+
 
 resource "aws_instance" "app_server" {
   ami           = "ami-091f18e98bc129c4e"
