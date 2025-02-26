@@ -104,21 +104,28 @@ resource "aws_security_group" "ec2_sg" {
 
 
 
-resource "aws_instance" "app_server" {
+resource "aws_instance" "app_server1" {
   ami           = "ami-091f18e98bc129c4e"
   instance_type = "t2.micro"
   
   subnet_id              = aws_subnet.public_subnet.id # Attach to a public subnet
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
+
+  tags = {
+    Name = "DerricksAppServer1"
+  }
 }
 
 
-resource "aws_instance" "app_server" {
+resource "aws_instance" "app_server2" {
   ami           = "ami-091f18e98bc129c4e"
   instance_type = "t2.micro"
 
+    subnet_id              = aws_subnet.public_subnet.id # Attach to a public subnet
+  vpc_security_group_ids = [aws_security_group.ec2_sg.id]
+
   tags = {
-    Name = "DerricksAppServer"
+    Name = "DerricksAppServer2"
   }
 
   
@@ -131,14 +138,4 @@ resource "aws_instance" "app_server" {
     sudo systemctl enable httpd
     sudo systemctl start httpd
   EOT
-}
-
-output "instance_instance_state" {
-  description = "Public IP Address of the EC2 instance"
-  value = aws_instance.app_server.instance_state
-}
-
-output "instance_instance_type" {
-  description = "Public IP Address of the EC2 instance"
-  value = aws_instance.app_server.instance_type
 }
