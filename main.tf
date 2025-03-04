@@ -139,3 +139,8 @@ resource "aws_instance" "app_server2" {
     sudo systemctl start httpd
   EOT
 }
+
+resource "aws_key_pair" "EC2_key" {
+  key_name = "ec2_key"
+  public_key = file("~/.ssh/ec2key.pub")
+}
